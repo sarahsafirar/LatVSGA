@@ -12,7 +12,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
+import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         emptyX=3;
         emptyY=3;
         for ( int i = 0; i < group.getChildCount() -1; i++) {
+            buttons[i/4][i%4].setText(String.valueOf(tiles[i]));
             buttons[i/4][i%4].setBackgroundResource(android.R.drawable.btn_default);
         }
 
@@ -75,23 +78,52 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void loadViews() {
+    private void loadViews(){
         group=findViewById(R.id.group);
         buttons = new Button[4][4];
 
-        for(int i = 0; i < group.getChildCount(); i++){
-            buttons[i/4][i%4] = (Button) group.getChildAt(i);
-        }
+        for (int i=0; i<group.getChildCount(); i++)
+            buttons[i / 4][i % 4] = (Button) group.getChildAt(i);
     }
     public void buttonClick(View view){
         Button button = (Button) view;
-        int x = button.getTag().toString().charAt(0)- '0';
-        int y = button.getTag().toString().charAt(1)- '0';
+        int x = button.getTag().toString().charAt(0)-'0';
+        int y = button.getTag().toString().charAt(1)-'0';
 
-        if((Math.abs(emptyX-x)==1&&emptyY==y)||(Math.abs(emptyY-y)==1&&emptyX==x)){
+        if ((Math.abs(emptyX-x)==1&&emptyY==y)||(Math.abs(emptyY-y)==1&&emptyX==x)){
             buttons[emptyX][emptyY].setText(button.getText().toString());
-            buttons[emptyX][emptyY].setBackgroundResource();
+            buttons[emptyX][emptyY].setBackgroundResource(android.R.drawable.btn_default);
+            button.setText("");
+            button.setBackgroundColor((ContextCompat.getColor(this, R.color.colorFreeButton )));
+            emptyX=x;
+            emptyY=y;
+            checkWin();
         }
+    }
+
+    private void checkWin(){
+        boolean isWin = false;
+        if(emptyX==3 && emptyY==3){
+            for (int i = 0; i < group.getChildCount()-1 ; i++) {
+                if (buttons[i/4][i%4].getText().toString().equals(String.valueOf(i+1))){
+                    isWin=true;
+                } else{
+                    isWin = false;
+                    break;
+                }
+            }
+        }
+
+        if (isWin){
+            Toast.makeText(this, "You Win It", Toast.LENGTH_SHORT).show();
+            for (int i = 0; i < group.getChildCount(); i++) {
+                buttons[i/4][i%4].setClickable(false);
+            }
+        }
+    }
+
+    private void shufflePos(){
+        List<String>
     }
 
 

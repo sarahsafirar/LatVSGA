@@ -3,9 +3,28 @@
     <string name="menu1">ulangi</string>
     <string name="menu2">keluar</string>
     <string name="title_activity_main2">MainActivity2</string>
+    <string name="button1">A</string>
+    <string name="button2">B</string>
+    <string name="button3">C</string>
+    <string name="button4">D</string>
+    <string name="button5">E</string>
+    <string name="button6">F</string>
+    <string name="button7">G</string>
+    <string name="button8">H</string>
+    <string name="button9">I</string>
+    <string name="button10">J</string>
+    <string name="button11">K</string>
+    <string name="button12">L</string>
+    <string name="button13">M</string>
+    <string name="button14">N</string>
+    <string name="button15">O</string>
+    <string name="button16"> </string>
+
+
     <!--
     This string is used for square devices and overridden by hello_world in
     values-round/strings.xml for round devices.
     -->
     <string name="hello_world">Hello Square World!</string>
+    <string name="A" />
 </resources>
